@@ -38,12 +38,10 @@
   --account-avatar-size: 3.1rem;
   --icon-size: 1rem;
   --utility-size: 2.1rem;
-  --chip-symbol-size: 5.4rem;
   --brand-size: 3rem;
 }
 
 /* Build the page as a positioned scene so the museum pieces can match the reference layering. */
-/* The page background stays soft and bright to let the chips and cards carry the contrast. */
 .home-scene {
   display: block;
   position: relative;
@@ -192,7 +190,7 @@
   opacity: 0.85;
 }
 
-/* Float the top-right profile cluster above the chip field as a separate card system. */
+/* Float the top-right profile cluster above the scene as a separate card system. */
 /* The success toast stays attached but visually lighter than the main profile card. */
 .account-panel {
   display: flex;
@@ -260,7 +258,7 @@
   font-weight: 700;
 }
 
-/* Keep the utility rail understated so the feature chips remain the visual focus. */
+/* Keep the utility rail understated so the main content remains the visual focus. */
 /* Repeated round buttons are enough here because the reference uses small pale controls. */
 .utility-rail {
   display: grid;
@@ -287,137 +285,14 @@
   font-size: 0.78rem;
 }
 
-/* Position the large decorative chips independently so the scene can mimic the reference composition. */
-/* Each chip variant carries its own gradient and inset shadow while reusing the same circular base. */
-.chip-canvas {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-}
-
-.feature-chip {
-  position: absolute;
-  display: grid;
-  place-items: center;
-  inline-size: 18rem;
-  block-size: 18rem;
-  border-radius: 50%;
-  overflow: hidden;
-  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.38), rgba(0, 0, 0, 0) 38%);
-  box-shadow:
-    inset 0 0 0 0.2rem rgba(255, 255, 255, 0.45),
-    inset 0 0 1.8rem rgba(0, 0, 0, 0.12),
-    0 1.4rem 2.4rem rgba(0, 0, 0, 0.08);
-}
-
-.feature-chip__core {
-  display: grid;
-  place-items: center;
-  inline-size: 45%;
-  block-size: 45%;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 202, 106, 1), rgba(238, 112, 47, 1));
-  box-shadow: inset 0 0 0 0.35rem rgba(255, 224, 96, 0.95);
-}
-
-.feature-chip__symbol {
-  font-size: var(--chip-symbol-size);
-  color: rgba(255, 255, 255, 0.72);
-  opacity: 0.95;
-  filter: drop-shadow(0 0.25rem 0.2rem rgba(0, 0, 0, 0.18));
-}
-
-.feature-chip--neutral {
-  inset: -7rem auto auto 28rem;
-  background:
-    radial-gradient(circle at 50% 28%, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0) 37%),
-    linear-gradient(180deg, #f8f8f7, #dcdcdc);
-  box-shadow:
-    inset 0 0 0 0.18rem rgba(255, 255, 255, 0.75),
-    inset 0 0 1.6rem rgba(0, 0, 0, 0.08);
-  opacity: 0.9;
-}
-
-.feature-chip--green {
-  inset: 0.25rem 7.2rem auto auto;
-  inline-size: 20.5rem;
-  block-size: 20.5rem;
-  background:
-    radial-gradient(circle at 50% 18%, rgba(255, 255, 255, 0.26), rgba(255, 255, 255, 0) 30%),
-    linear-gradient(180deg, #77edbb, #45bc8d);
-  box-shadow:
-    inset 0 0 0 0.22rem rgba(204, 255, 240, 0.55),
-    inset 0 0 2.8rem rgba(0, 62, 43, 0.18),
-    0 1.9rem 3rem rgba(0, 73, 53, 0.08);
-}
-
-.feature-chip--green .feature-chip__symbol {
-  color: rgba(24, 82, 57, 0.74);
-  font-size: 6.4rem;
-}
-
-.feature-chip--blue {
-  inset: 8.9rem auto auto 20rem;
-  inline-size: 24rem;
-  block-size: 24rem;
-  background:
-    radial-gradient(circle at 50% 22%, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0) 32%),
-    linear-gradient(180deg, #6fd9ff, #3d97c3);
-  box-shadow:
-    inset 0 0 0 0.22rem rgba(196, 247, 255, 0.5),
-    inset 0 0 2.8rem rgba(14, 74, 112, 0.28),
-    0 2rem 3rem rgba(0, 64, 103, 0.1);
-}
-
-.feature-chip--warm {
-  inset: 22.5rem 7.2rem auto auto;
-  inline-size: 19rem;
-  block-size: 19rem;
-  background:
-    conic-gradient(from 140deg, #f90972, #ffb72f, #fff04a, #ff6d00, #ff1d54, #f90972);
-  box-shadow:
-    inset 0 0 0 0.22rem rgba(255, 206, 110, 0.65),
-    inset 0 0 2.3rem rgba(112, 8, 32, 0.26),
-    0 1.8rem 2.6rem rgba(160, 54, 0, 0.12);
-}
-
-.feature-chip--warm .feature-chip__symbol {
-  font-size: 3rem;
-  color: rgba(255, 207, 84, 0.82);
-}
-
-.feature-chip--black {
-  inset: 35rem auto auto 23.5rem;
-  inline-size: 19rem;
-  block-size: 19rem;
-  background:
-    radial-gradient(circle at 50% 18%, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0) 32%),
-    linear-gradient(180deg, #4b5063, #11131d);
-  box-shadow:
-    inset 0 0 0 0.18rem rgba(255, 255, 255, 0.08),
-    inset 0 0 2.2rem rgba(0, 0, 0, 0.38),
-    0 1.7rem 2.4rem rgba(0, 0, 0, 0.2);
-  opacity: 1;
-}
-
-.feature-chip--black .feature-chip__symbol {
-  color: rgba(255, 255, 255, 0.82);
-}
-
 /* ── Tablet (601–1200px) ──────────────────────────────────────────── */
-/* Tighten spacing, shrink chips so they read as décor, keep absolute  */
-/* layout but leave room for the account panel and utility rail.       */
+/* Tighten spacing and leave room for the account panel and utility rail. */
 @media (max-width: 1200px) {
   :root {
     --space-scene-padding: 1.5rem;
     --brand-size: 2.6rem;
     --account-avatar-size: 2.6rem;
     --utility-size: 1.9rem;
-    --chip-symbol-size: 4rem;
-  }
-
-  .home-scene {
-    min-height: 58rem;
   }
 
   .left-rail {
@@ -441,21 +316,6 @@
     top: 14rem;
   }
 
-  .chip-canvas {
-    pointer-events: none;
-  }
-
-  .feature-chip {
-    opacity: 0.5;
-    inline-size: 14rem;
-    block-size: 14rem;
-  }
-
-  .feature-chip--neutral  { inset: -5rem auto auto 18rem; }
-  .feature-chip--green    { inset: 4rem 1rem auto auto; inline-size: 16rem; block-size: 16rem; }
-  .feature-chip--blue     { inset: 11rem auto auto 11rem; inline-size: 18rem; block-size: 18rem; }
-  .feature-chip--warm     { inset: 28rem 1rem auto auto; inline-size: 14rem; block-size: 14rem; }
-  .feature-chip--black    { inset: 40rem auto auto 11rem; }
 }
 
 /* ── Small tablet (601–900px) ──────────────────────────────────────── */
@@ -467,7 +327,6 @@
     --space-scene-padding: 1.25rem;
     --account-avatar-size: 2.3rem;
     --utility-size: 1.8rem;
-    --chip-symbol-size: 3.4rem;
   }
 
   .left-rail {
@@ -492,27 +351,12 @@
     top: 12rem;
   }
 
-  .feature-chip {
-    opacity: 0.38;
-    inline-size: 11rem;
-    block-size: 11rem;
-  }
-
-  .feature-chip--neutral  { inset: -3.5rem auto auto 13rem; }
-  .feature-chip--green    { inset: 3rem 0.5rem auto auto; inline-size: 12rem; block-size: 12rem; }
-  .feature-chip--blue     { inset: 9rem auto auto 8rem; inline-size: 14rem; block-size: 14rem; }
-  .feature-chip--warm     { inset: 24rem 0.5rem auto auto; }
-  .feature-chip--black    { inset: 34rem auto auto 8rem; }
-
-  .feature-chip--green .feature-chip__symbol { font-size: 4rem; }
-  .feature-chip--warm .feature-chip__symbol  { font-size: 2rem; }
 }
 
 /* ── Phone (≤600px) ─────────────────────────────────────────────────── */
 /* Convert the absolute-positioned museum into a single-column flow     */
 /* layout so the wordmark, account panel, left rail, and utility rail    */
-/* stack vertically without overlapping. Decorative chips shrink into    */
-/* a soft background that no longer obstructs readable content.          */
+/* stack vertically without overlapping.                                 */
 @media (max-width: 600px) {
   :root {
     --brand-size: 2rem;
@@ -586,60 +430,4 @@
     margin: 0;
   }
 
-  /* ── Decorative chips: scale way down and push behind content ─────── */
-  .chip-canvas {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-    overflow: hidden;
-  }
-
-  .feature-chip {
-    opacity: 0.35;
-    inline-size: 9rem;
-    block-size: 9rem;
-  }
-
-  .feature-chip--neutral {
-    inset: -3rem auto auto 55%;
-    inline-size: 9rem;
-    block-size: 9rem;
-  }
-
-  .feature-chip--green {
-    inset: 6rem -2rem auto auto;
-    inline-size: 10rem;
-    block-size: 10rem;
-  }
-
-  .feature-chip--blue {
-    inset: auto auto 8rem -3rem;
-    inline-size: 11rem;
-    block-size: 11rem;
-  }
-
-  .feature-chip--warm {
-    inset: auto 0 2rem auto;
-    inline-size: 9rem;
-    block-size: 9rem;
-  }
-
-  .feature-chip--black {
-    inset: auto auto 18rem 50%;
-    inline-size: 9rem;
-    block-size: 9rem;
-  }
-
-  .feature-chip__symbol {
-    font-size: 2.8rem;
-  }
-
-  .feature-chip--green .feature-chip__symbol {
-    font-size: 3.2rem;
-  }
-
-  .feature-chip--warm .feature-chip__symbol {
-    font-size: 1.6rem;
-  }
 }
