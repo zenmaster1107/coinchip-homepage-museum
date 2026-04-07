@@ -1,0 +1,429 @@
+:root {
+  --page-bg: linear-gradient(180deg, #f8f8f6 0%, #f6f5f2 100%);
+  --surface-card: rgba(255, 255, 255, 0.96);
+  --surface-pill: #ffffff;
+  --surface-ghost: rgba(255, 255, 255, 0.7);
+  --text-primary: #232323;
+  --text-secondary: #797979;
+  --text-tertiary: rgba(65, 65, 65, 0.35);
+  --accent-positive: #3af236;
+  --avatar-color: #e8e8e8;
+  --icon-muted: rgba(85, 85, 85, 0.72);
+  --shadow-soft: 0 12px 32px rgba(0, 0, 0, 0.08);
+  --shadow-light: 0 8px 24px rgba(0, 0, 0, 0.06);
+  --space-scene-padding: 2rem;
+  --space-left-rail-gap: 1rem;
+  --space-card-margin-block: 0;
+  --space-card-margin-inline: 0;
+  --space-card-padding: 1rem;
+  --space-header-padding-block-end: 0.5rem;
+  --space-row-margin-block: 0;
+  --space-row-padding: 0.375rem 0;
+  --space-pill-margin-block: 0;
+  --space-pill-padding-inline: 0.625rem;
+  --space-pill-padding-block: 0.25rem;
+  --space-content-gap: 0.125rem;
+  --space-stack-gap: 0.625rem;
+  --space-pill-card-padding: 1rem 1.125rem;
+  --space-footer-gap: 0.75rem;
+  --space-account-gap: 0.75rem;
+  --space-utility-gap: 0.7rem;
+  --space-toast-padding-inline: 0.9rem;
+  --space-toast-padding-block: 0.35rem;
+  --radius-card: 1.65rem;
+  --radius-row: 0.75rem;
+  --radius-pill-card: 1.35rem;
+  --radius-pill: 999px;
+  --avatar-size: 1.9rem;
+  --account-avatar-size: 3.1rem;
+  --icon-size: 1rem;
+  --utility-size: 2.1rem;
+  --chip-symbol-size: 5.4rem;
+  --brand-size: 3rem;
+}
+
+/* Build the page as a positioned scene so the museum pieces can match the reference layering. */
+/* The page background stays soft and bright to let the chips and cards carry the contrast. */
+.home-scene {
+  display: block;
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  padding: var(--space-scene-padding);
+  background: var(--page-bg);
+}
+
+.brand-mark {
+  margin: 0;
+  position: relative;
+  z-index: 3;
+  color: var(--text-primary);
+  font-size: var(--brand-size);
+  font-family: system-ui, sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+
+.left-rail {
+  display: grid;
+  gap: var(--space-left-rail-gap);
+  position: relative;
+  z-index: 3;
+  margin: 3rem 0 0;
+  width: 12rem;
+}
+
+.left-rail__footer {
+  display: flex;
+  gap: var(--space-footer-gap);
+  margin: -0.35rem 0 0 0.4rem;
+  color: var(--text-tertiary);
+  font-size: 0.48rem;
+  letter-spacing: 0.04em;
+}
+
+/* Preserve the existing left-side museum objects while tightening them toward the reference. */
+/* Shared tokens keep the card and the pills aligned as one rail family. */
+.museum-card {
+  margin-block: var(--space-card-margin-block);
+  margin-inline: var(--space-card-margin-inline);
+  padding: var(--space-card-padding);
+  border-radius: var(--radius-card);
+  background-color: var(--surface-card);
+  box-shadow: var(--shadow-soft);
+  opacity: 1;
+}
+
+.museum-card__header {
+  padding-block-end: var(--space-header-padding-block-end);
+  color: var(--text-primary);
+  font-size: 1.15rem;
+}
+
+.museum-card__list {
+  display: grid;
+  gap: var(--space-stack-gap);
+}
+
+.recent-activity-row {
+  display: flex;
+  align-items: center;
+  margin-block: var(--space-row-margin-block);
+  padding: var(--space-row-padding);
+  gap: var(--space-stack-gap);
+  border-radius: var(--radius-row);
+}
+
+.recent-activity-row__content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: var(--space-content-gap);
+}
+
+.recent-activity-row__avatar {
+  inline-size: var(--avatar-size);
+  block-size: var(--avatar-size);
+  border-radius: var(--radius-pill);
+  background-color: #f1cf36;
+}
+
+.recent-activity-row__label {
+  color: var(--text-primary);
+  font-size: 0.7rem;
+  line-height: 1.15;
+}
+
+.recent-activity-row__time {
+  color: var(--text-secondary);
+  font-size: 0.58rem;
+}
+
+.recent-activity-row__amount-pill {
+  padding-inline: var(--space-pill-padding-inline);
+  padding-block: var(--space-pill-padding-block);
+  border-radius: var(--radius-pill);
+  background-color: var(--accent-positive);
+  color: var(--surface-pill);
+  opacity: 1;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.pill-card {
+  display: flex;
+  align-items: center;
+  margin-block: var(--space-pill-margin-block);
+  margin-inline: var(--space-card-margin-inline);
+  padding: var(--space-pill-card-padding);
+  gap: var(--space-stack-gap);
+  border-radius: var(--radius-pill-card);
+  background-color: var(--surface-card);
+  color: var(--text-primary);
+  box-shadow: var(--shadow-light);
+  background-image: none;
+}
+
+.pill-card__icon {
+  inline-size: var(--icon-size);
+  block-size: var(--icon-size);
+  color: var(--icon-muted);
+  opacity: 1;
+}
+
+.pill-card__label {
+  flex: 1;
+  color: var(--text-primary);
+  font-size: 0.72rem;
+}
+
+.pill-card__chevron {
+  inline-size: var(--icon-size);
+  block-size: var(--icon-size);
+  color: rgba(110, 110, 110, 0.32);
+  opacity: 0.7;
+}
+
+/* Float the top-right profile cluster above the chip field as a separate card system. */
+/* The success toast stays attached but visually lighter than the main profile card. */
+.account-panel {
+  display: flex;
+  align-items: center;
+  gap: var(--space-account-gap);
+  padding: 0.55rem 0.8rem;
+  border-radius: 1.15rem;
+  position: absolute;
+  top: 1.4rem;
+  right: 2.15rem;
+  z-index: 4;
+  background-color: var(--surface-card);
+  box-shadow: var(--shadow-soft);
+  margin: 0;
+}
+
+.account-panel__avatar {
+  inline-size: var(--account-avatar-size);
+  block-size: var(--account-avatar-size);
+  border-radius: var(--radius-pill);
+  display: grid;
+  place-items: center;
+  background-color: #ffd22f;
+  color: #345d2e;
+  font-size: 1.6rem;
+}
+
+.account-panel__details {
+  display: grid;
+  gap: 0.18rem;
+}
+
+.account-panel__stat {
+  color: #d3b15e;
+  font-size: 0.75rem;
+}
+
+.account-panel__status {
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+}
+
+.account-panel__menu {
+  border: none;
+  background: transparent;
+  padding: 0;
+  color: rgba(95, 95, 95, 0.7);
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.status-toast {
+  padding-inline: var(--space-toast-padding-inline);
+  padding-block: var(--space-toast-padding-block);
+  border-radius: var(--radius-pill);
+  position: absolute;
+  top: 4.9rem;
+  right: 1.35rem;
+  z-index: 4;
+  margin: 0;
+  background-color: var(--accent-positive);
+  color: #ffffff;
+  box-shadow: var(--shadow-light);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+/* Keep the utility rail understated so the feature chips remain the visual focus. */
+/* Repeated round buttons are enough here because the reference uses small pale controls. */
+.utility-rail {
+  display: grid;
+  gap: var(--space-utility-gap);
+  position: absolute;
+  right: 0.85rem;
+  top: 17rem;
+  z-index: 4;
+  margin: 0;
+}
+
+.utility-rail__button {
+  inline-size: var(--utility-size);
+  block-size: var(--utility-size);
+  border-radius: var(--radius-pill);
+  display: grid;
+  place-items: center;
+  border: none;
+  background: var(--surface-card);
+  color: rgba(176, 176, 176, 0.95);
+  box-shadow: var(--shadow-light);
+  opacity: 1;
+  cursor: pointer;
+  font-size: 0.78rem;
+}
+
+/* Position the large decorative chips independently so the scene can mimic the reference composition. */
+/* Each chip variant carries its own gradient and inset shadow while reusing the same circular base. */
+.chip-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.feature-chip {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  inline-size: 18rem;
+  block-size: 18rem;
+  border-radius: 50%;
+  overflow: hidden;
+  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.38), rgba(0, 0, 0, 0) 38%);
+  box-shadow:
+    inset 0 0 0 0.2rem rgba(255, 255, 255, 0.45),
+    inset 0 0 1.8rem rgba(0, 0, 0, 0.12),
+    0 1.4rem 2.4rem rgba(0, 0, 0, 0.08);
+}
+
+.feature-chip__core {
+  display: grid;
+  place-items: center;
+  inline-size: 45%;
+  block-size: 45%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 202, 106, 1), rgba(238, 112, 47, 1));
+  box-shadow: inset 0 0 0 0.35rem rgba(255, 224, 96, 0.95);
+}
+
+.feature-chip__symbol {
+  font-size: var(--chip-symbol-size);
+  color: rgba(255, 255, 255, 0.72);
+  opacity: 0.95;
+  filter: drop-shadow(0 0.25rem 0.2rem rgba(0, 0, 0, 0.18));
+}
+
+.feature-chip--neutral {
+  inset: -7rem auto auto 28rem;
+  background:
+    radial-gradient(circle at 50% 28%, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0) 37%),
+    linear-gradient(180deg, #f8f8f7, #dcdcdc);
+  box-shadow:
+    inset 0 0 0 0.18rem rgba(255, 255, 255, 0.75),
+    inset 0 0 1.6rem rgba(0, 0, 0, 0.08);
+  opacity: 0.9;
+}
+
+.feature-chip--green {
+  inset: 0.25rem 7.2rem auto auto;
+  inline-size: 20.5rem;
+  block-size: 20.5rem;
+  background:
+    radial-gradient(circle at 50% 18%, rgba(255, 255, 255, 0.26), rgba(255, 255, 255, 0) 30%),
+    linear-gradient(180deg, #77edbb, #45bc8d);
+  box-shadow:
+    inset 0 0 0 0.22rem rgba(204, 255, 240, 0.55),
+    inset 0 0 2.8rem rgba(0, 62, 43, 0.18),
+    0 1.9rem 3rem rgba(0, 73, 53, 0.08);
+}
+
+.feature-chip--green .feature-chip__symbol {
+  color: rgba(24, 82, 57, 0.74);
+  font-size: 6.4rem;
+}
+
+.feature-chip--blue {
+  inset: 8.9rem auto auto 20rem;
+  inline-size: 24rem;
+  block-size: 24rem;
+  background:
+    radial-gradient(circle at 50% 22%, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0) 32%),
+    linear-gradient(180deg, #6fd9ff, #3d97c3);
+  box-shadow:
+    inset 0 0 0 0.22rem rgba(196, 247, 255, 0.5),
+    inset 0 0 2.8rem rgba(14, 74, 112, 0.28),
+    0 2rem 3rem rgba(0, 64, 103, 0.1);
+}
+
+.feature-chip--warm {
+  inset: 22.5rem 7.2rem auto auto;
+  inline-size: 19rem;
+  block-size: 19rem;
+  background:
+    conic-gradient(from 140deg, #f90972, #ffb72f, #fff04a, #ff6d00, #ff1d54, #f90972);
+  box-shadow:
+    inset 0 0 0 0.22rem rgba(255, 206, 110, 0.65),
+    inset 0 0 2.3rem rgba(112, 8, 32, 0.26),
+    0 1.8rem 2.6rem rgba(160, 54, 0, 0.12);
+}
+
+.feature-chip--warm .feature-chip__symbol {
+  font-size: 3rem;
+  color: rgba(255, 207, 84, 0.82);
+}
+
+.feature-chip--black {
+  inset: 35rem auto auto 23.5rem;
+  inline-size: 19rem;
+  block-size: 19rem;
+  background:
+    radial-gradient(circle at 50% 18%, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0) 32%),
+    linear-gradient(180deg, #4b5063, #11131d);
+  box-shadow:
+    inset 0 0 0 0.18rem rgba(255, 255, 255, 0.08),
+    inset 0 0 2.2rem rgba(0, 0, 0, 0.38),
+    0 1.7rem 2.4rem rgba(0, 0, 0, 0.2);
+  opacity: 1;
+}
+
+.feature-chip--black .feature-chip__symbol {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+@media (max-width: 1200px) {
+  .home-scene {
+    min-height: 86rem;
+  }
+
+  .account-panel,
+  .status-toast,
+  .utility-rail {
+    right: 1rem;
+  }
+
+  .feature-chip--neutral {
+    inset: -6rem auto auto 19rem;
+  }
+
+  .feature-chip--blue {
+    inset: 13rem auto auto 12rem;
+  }
+
+  .feature-chip--green {
+    inset: 7rem 1rem auto auto;
+  }
+
+  .feature-chip--warm {
+    inset: 31rem 2rem auto auto;
+  }
+
+  .feature-chip--black {
+    inset: 47rem auto auto 12rem;
+  }
+}
