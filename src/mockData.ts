@@ -1,8 +1,8 @@
 export const recentActivity = [
-  { id: 'deposit-1', label: 'Deposit', time: '3 mins ago', amount: '$12K' },
-  { id: 'deposit-2', label: 'Deposit', time: '30 mins ago', amount: '$12K' },
-  { id: 'open-long', label: 'Open Long', time: '40 mins ago', amount: '$12K' },
-  { id: 'withdraw', label: 'Withdraw', time: '2 days ago', amount: '$12K' },
+  { id: 'deposit-1', label: 'Deposit', time: '3 mins ago', amount: '$12K', avatarColor: '#f1cf36' },
+  { id: 'deposit-2', label: 'Deposit', time: '30 mins ago', amount: '$8.4K', avatarColor: '#f1cf36' },
+  { id: 'open-long', label: 'Open Long', time: '40 mins ago', amount: '$3.2K', avatarColor: '#6fd9ff' },
+  { id: 'withdraw', label: 'Withdraw', time: '2 days ago', amount: '$1.5K', avatarColor: '#ffb07a' },
 ]
 
 export const pillItems = [

@@ -5,10 +5,10 @@
   --surface-ghost: rgba(255, 255, 255, 0.7);
   --text-primary: #232323;
   --text-secondary: #797979;
-  --text-tertiary: rgba(65, 65, 65, 0.35);
+  --text-tertiary: rgba(65, 65, 65, 0.44);
   --accent-positive: #3af236;
   --avatar-color: #e8e8e8;
-  --icon-muted: rgba(85, 85, 85, 0.72);
+  --icon-muted: rgba(75, 75, 75, 0.78);
   --shadow-soft: 0 12px 32px rgba(0, 0, 0, 0.08);
   --shadow-light: 0 8px 24px rgba(0, 0, 0, 0.06);
   --space-scene-padding: 2rem;
@@ -78,8 +78,9 @@
   gap: var(--space-footer-gap);
   margin: -0.35rem 0 0 0.4rem;
   color: var(--text-tertiary);
-  font-size: 0.48rem;
-  letter-spacing: 0.04em;
+  font-size: 0.54rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
 }
 
 /* Preserve the existing left-side museum objects while tightening them toward the reference. */
@@ -97,7 +98,9 @@
 .museum-card__header {
   padding-block-end: var(--space-header-padding-block-end);
   color: var(--text-primary);
-  font-size: 1.15rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
 }
 
 .museum-card__list {
@@ -130,24 +133,27 @@
 
 .recent-activity-row__label {
   color: var(--text-primary);
-  font-size: 0.7rem;
-  line-height: 1.15;
+  font-size: 0.72rem;
+  line-height: 1.2;
+  letter-spacing: 0.005em;
 }
 
 .recent-activity-row__time {
   color: var(--text-secondary);
-  font-size: 0.58rem;
+  font-size: 0.6rem;
+  letter-spacing: 0.01em;
 }
 
 .recent-activity-row__amount-pill {
   padding-inline: var(--space-pill-padding-inline);
   padding-block: var(--space-pill-padding-block);
   border-radius: var(--radius-pill);
-  background-color: var(--accent-positive);
+  background-color: #34e036;
   color: var(--surface-pill);
   opacity: 1;
-  font-size: 0.78rem;
+  font-size: 0.74rem;
   font-weight: 700;
+  letter-spacing: 0.02em;
 }
 
 .pill-card {
@@ -174,14 +180,16 @@
 .pill-card__label {
   flex: 1;
   color: var(--text-primary);
-  font-size: 0.72rem;
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
 }
 
 .pill-card__chevron {
   inline-size: var(--icon-size);
   block-size: var(--icon-size);
-  color: rgba(110, 110, 110, 0.32);
-  opacity: 0.7;
+  color: rgba(100, 100, 100, 0.4);
+  opacity: 0.85;
 }
 
 /* Float the top-right profile cluster above the chip field as a separate card system. */
