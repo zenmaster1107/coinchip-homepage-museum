@@ -396,34 +396,242 @@
   color: rgba(255, 255, 255, 0.82);
 }
 
+/* ── Tablet (601–1200px) ──────────────────────────────────────────── */
+/* Tighten spacing, shrink chips so they read as décor, keep absolute  */
+/* layout but leave room for the account panel and utility rail.       */
 @media (max-width: 1200px) {
-  .home-scene {
-    min-height: 86rem;
+  :root {
+    --space-scene-padding: 1.5rem;
+    --brand-size: 2.6rem;
+    --account-avatar-size: 2.6rem;
+    --utility-size: 1.9rem;
+    --chip-symbol-size: 4rem;
   }
 
-  .account-panel,
-  .status-toast,
-  .utility-rail {
+  .home-scene {
+    min-height: 58rem;
+  }
+
+  .left-rail {
+    width: min(12rem, calc(100vw - 15rem));
+  }
+
+  .account-panel {
     right: 1rem;
+    top: 1.2rem;
+    padding: 0.45rem 0.65rem;
+  }
+
+  .status-toast {
+    right: 0.75rem;
+    top: 4.4rem;
+    font-size: 0.72rem;
+  }
+
+  .utility-rail {
+    right: 0.6rem;
+    top: 14rem;
+  }
+
+  .chip-canvas {
+    pointer-events: none;
+  }
+
+  .feature-chip {
+    opacity: 0.5;
+    inline-size: 14rem;
+    block-size: 14rem;
+  }
+
+  .feature-chip--neutral  { inset: -5rem auto auto 18rem; }
+  .feature-chip--green    { inset: 4rem 1rem auto auto; inline-size: 16rem; block-size: 16rem; }
+  .feature-chip--blue     { inset: 11rem auto auto 11rem; inline-size: 18rem; block-size: 18rem; }
+  .feature-chip--warm     { inset: 28rem 1rem auto auto; inline-size: 14rem; block-size: 14rem; }
+  .feature-chip--black    { inset: 40rem auto auto 11rem; }
+}
+
+/* ── Small tablet (601–900px) ──────────────────────────────────────── */
+/* On narrower tablets the absolute layout gets tight — scale down      */
+/* aggressively and reposition to keep the left rail readable.          */
+@media (max-width: 900px) {
+  :root {
+    --brand-size: 2.2rem;
+    --space-scene-padding: 1.25rem;
+    --account-avatar-size: 2.3rem;
+    --utility-size: 1.8rem;
+    --chip-symbol-size: 3.4rem;
+  }
+
+  .left-rail {
+    width: min(11rem, calc(100vw - 13rem));
+  }
+
+  .account-panel {
+    padding: 0.4rem 0.55rem;
+    gap: 0.5rem;
+  }
+
+  .account-panel__stat  { font-size: 0.65rem; }
+  .account-panel__status { font-size: 0.68rem; }
+
+  .status-toast {
+    top: 3.8rem;
+    font-size: 0.68rem;
+    padding-inline: 0.7rem;
+  }
+
+  .utility-rail {
+    top: 12rem;
+  }
+
+  .feature-chip {
+    opacity: 0.38;
+    inline-size: 11rem;
+    block-size: 11rem;
+  }
+
+  .feature-chip--neutral  { inset: -3.5rem auto auto 13rem; }
+  .feature-chip--green    { inset: 3rem 0.5rem auto auto; inline-size: 12rem; block-size: 12rem; }
+  .feature-chip--blue     { inset: 9rem auto auto 8rem; inline-size: 14rem; block-size: 14rem; }
+  .feature-chip--warm     { inset: 24rem 0.5rem auto auto; }
+  .feature-chip--black    { inset: 34rem auto auto 8rem; }
+
+  .feature-chip--green .feature-chip__symbol { font-size: 4rem; }
+  .feature-chip--warm .feature-chip__symbol  { font-size: 2rem; }
+}
+
+/* ── Phone (≤600px) ─────────────────────────────────────────────────── */
+/* Convert the absolute-positioned museum into a single-column flow     */
+/* layout so the wordmark, account panel, left rail, and utility rail    */
+/* stack vertically without overlapping. Decorative chips shrink into    */
+/* a soft background that no longer obstructs readable content.          */
+@media (max-width: 600px) {
+  :root {
+    --brand-size: 2rem;
+    --space-scene-padding: 1rem;
+  }
+
+  /* Switch to vertical flow so nothing overlaps. */
+  .home-scene {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    min-height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: var(--space-scene-padding);
+  }
+
+  /* Wordmark stays in flow, shrinks to fit. */
+  .brand-mark {
+    font-size: var(--brand-size);
+    max-width: 100%;
+    z-index: 3;
+  }
+
+  /* Account panel: leave absolute positioning, flow into the document. */
+  .account-panel {
+    position: relative;
+    inset: auto;
+    top: auto;
+    right: auto;
+    z-index: 3;
+    align-self: flex-end;
+    max-width: 100%;
+    margin: 0;
+  }
+
+  .status-toast {
+    position: relative;
+    inset: auto;
+    top: auto;
+    right: auto;
+    z-index: 3;
+    align-self: flex-end;
+    margin: -0.5rem 0 0;
+  }
+
+  /* Left rail fills the viewport width; border-box prevents padding overflow. */
+  .left-rail {
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+  }
+
+  /* Pill cards fill the rail; border-box keeps padding inside the 100% width. */
+  .pill-card {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Utility rail: horizontal row at the bottom of the flow. */
+  .utility-rail {
+    position: relative;
+    inset: auto;
+    top: auto;
+    right: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-utility-gap);
+    z-index: 3;
+    margin: 0;
+  }
+
+  /* ── Decorative chips: scale way down and push behind content ─────── */
+  .chip-canvas {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .feature-chip {
+    opacity: 0.35;
+    inline-size: 9rem;
+    block-size: 9rem;
   }
 
   .feature-chip--neutral {
-    inset: -6rem auto auto 19rem;
-  }
-
-  .feature-chip--blue {
-    inset: 13rem auto auto 12rem;
+    inset: -3rem auto auto 55%;
+    inline-size: 9rem;
+    block-size: 9rem;
   }
 
   .feature-chip--green {
-    inset: 7rem 1rem auto auto;
+    inset: 6rem -2rem auto auto;
+    inline-size: 10rem;
+    block-size: 10rem;
+  }
+
+  .feature-chip--blue {
+    inset: auto auto 8rem -3rem;
+    inline-size: 11rem;
+    block-size: 11rem;
   }
 
   .feature-chip--warm {
-    inset: 31rem 2rem auto auto;
+    inset: auto 0 2rem auto;
+    inline-size: 9rem;
+    block-size: 9rem;
   }
 
   .feature-chip--black {
-    inset: 47rem auto auto 12rem;
+    inset: auto auto 18rem 50%;
+    inline-size: 9rem;
+    block-size: 9rem;
+  }
+
+  .feature-chip__symbol {
+    font-size: 2.8rem;
+  }
+
+  .feature-chip--green .feature-chip__symbol {
+    font-size: 3.2rem;
+  }
+
+  .feature-chip--warm .feature-chip__symbol {
+    font-size: 1.6rem;
   }
 }
