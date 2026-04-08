@@ -6,7 +6,7 @@ import './primitives.css'
 
 export type PillIconName = Extract<
   ChromeIconName,
-  'trade' | 'portfolio' | 'explore' | 'settings' | 'predictions'
+  'trade' | 'portfolio' | 'explore' | 'settings'
 >
 
 export type PillItem = {

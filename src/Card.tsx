@@ -29,7 +29,7 @@ export function CardRow({ item }: { item: CardItem }) {
         <span className="cc-card__label">{item.label}</span>
         <span className="cc-card__meta">{item.time}</span>
       </span>
-      {item.trailing ?? <span className="cc-card__amount">{item.amount}</span>}
+      {item.trailing ?? <span className="cc-card__amount" data-numeric="true">{item.amount}</span>}
     </li>
   )
 }

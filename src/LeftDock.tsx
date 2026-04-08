@@ -7,14 +7,20 @@ export type LeftDockProps = {
   activity: CardItem[]
   navigation: PillItem[]
   activeId?: string
+  onSelectPage?: (item: PillItem) => void
 }
 
-export default function LeftDock({ activity, navigation, activeId = 'trade' }: LeftDockProps) {
+export default function LeftDock({
+  activity,
+  navigation,
+  activeId = 'trade',
+  onSelectPage,
+}: LeftDockProps) {
   return (
     <section className="cc-leftDock">
       <BrandMark />
       <Card items={activity} />
-      <Pills items={navigation} activeId={activeId} />
+      <Pills items={navigation} activeId={activeId} onSelect={onSelectPage} />
       <FooterLinks />
     </section>
   )

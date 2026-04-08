@@ -13,12 +13,14 @@ export default function AccountDock({ balance, status, banner }: AccountDockProp
   const StatusIcon = chromeIconMap.status
 
   return (
-    <div className="cc-accountCluster">
+    <div className="cc-accountDock">
       <section className="cc-accountPill" aria-label="Profile summary">
-        <div className="cc-accountPill__avatar" aria-hidden="true" />
+        <div className="cc-accountPill__avatar" aria-hidden="true">
+          <span className="cc-accountPill__avatarMark">C</span>
+        </div>
         <div className="cc-accountPill__copy">
-          <span className="cc-accountPill__balance">
-            <span aria-hidden="true">◉</span>
+          <span className="cc-accountPill__balance" data-numeric="true">
+            <span aria-hidden="true">$</span>
             {balance}
           </span>
           <span className="cc-accountPill__status">
