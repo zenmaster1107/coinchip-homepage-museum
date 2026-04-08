@@ -1,35 +1,116 @@
-type PillItem = {
+import type { ButtonHTMLAttributes, ReactNode } from 'react'
+import {
+  ChevronDown,
+  Globe,
+  Hexagon,
+  Layers,
+  Target,
+  type LucideIcon,
+} from 'lucide-react'
+import './design-tokens.css'
+import './primitives.css'
+
+const iconMap = {
+  cards: Layers,
+  trade: Layers,
+  target: Hexagon,
+  pro: Hexagon,
+  globe: Globe,
+  'real-estate': Globe,
+  ring: Target,
+  predictions: Target,
+}
+
+export type PillIconName = keyof typeof iconMap
+
+export type PillItem = {
   id: string
   label: string
-  icon: 'cards' | 'target' | 'globe' | 'ring'
+  icon: PillIconName
 }
 
-type PillsProps = {
+export type PillsProps = {
   items: PillItem[]
+  activeId?: string
+  className?: string
+  onSelect?: (item: PillItem) => void
+  ariaLabel?: string
 }
 
-function PillIcon({ icon, className }: { icon: PillItem['icon']; className: string }) {
-  const common = { className, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: '1.8' }
-  if (icon === 'cards') return <svg {...common}><path d="M7 6h10v12H7z" /><path d="M4 9V4h10" /></svg>
-  if (icon === 'target') return <svg {...common}><circle cx="12" cy="12" r="8" /><circle cx="12" cy="12" r="3" /></svg>
-  if (icon === 'globe') return <svg {...common}><circle cx="12" cy="12" r="8" /><path d="M4 12h16M12 4a13 13 0 0 1 0 16M12 4a13 13 0 0 0 0 16" /></svg>
-  return <svg {...common}><circle cx="12" cy="12" r="8" /><path d="M12 8v8M8 12h8" /></svg>
+export type PillProps = {
+  label: string
+  icon: PillIconName | LucideIcon
+  active?: boolean
+  className?: string
+  chevron?: ReactNode
+} & Pick<ButtonHTMLAttributes<HTMLButtonElement>, 'type' | 'onClick' | 'aria-label'>
+
+export function PillStack({
+  children,
+  className = '',
+}: {
+  children: ReactNode
+  className?: string
+}) {
+  return <ul className={['cc-pillStack', className].filter(Boolean).join(' ')}>{children}</ul>
 }
 
-export default function Pills({ items }: PillsProps) {
+export function Pill({
+  label,
+  icon,
+  active = false,
+  className = '',
+  chevron = <ChevronDown size={16} strokeWidth={2.2} />,
+  type = 'button',
+  onClick,
+  'aria-label': ariaLabel,
+}: PillProps) {
+  const Icon = typeof icon === 'string' ? iconMap[icon] : icon
+
   return (
-    // Render the lower navigation objects as one repeated museum pattern.
-    // Icons and chevrons stay inline so the component still reads as a single family.
-    <>
-      {items.map((item) => (
-        <article className="pill-card" key={item.id}>
-          <PillIcon className="pill-card__icon" icon={item.icon} />
-          <strong className="pill-card__label">{item.label}</strong>
-          <svg className="pill-card__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-            <path d="m7 10 5 5 5-5" />
-          </svg>
-        </article>
-      ))}
-    </>
+    <button
+      type={type}
+      className={['cc-pill', active ? 'cc-pill--active' : '', className].filter(Boolean).join(' ')}
+      aria-pressed={active}
+      aria-label={ariaLabel ?? label}
+      onClick={onClick}
+    >
+      <span className="cc-pill__iconWell" aria-hidden="true">
+        <Icon size={16} strokeWidth={2.1} />
+      </span>
+      <span className="cc-pill__label">{label}</span>
+      <span className="cc-pill__chevron" aria-hidden="true">
+        {chevron}
+      </span>
+    </button>
+  )
+}
+
+export default function Pills({
+  items,
+  activeId,
+  className = '',
+  onSelect,
+  ariaLabel = 'Primary navigation',
+}: PillsProps) {
+  return (
+    <nav className={className} aria-label={ariaLabel}>
+      <PillStack>
+        {items.map((item) => {
+          const isActive = item.id === activeId
+
+          return (
+            <li key={item.id}>
+              <Pill
+                label={item.label}
+                icon={item.icon}
+                active={isActive}
+                onClick={() => onSelect?.(item)}
+              />
+            </li>
+          )
+        })}
+      </PillStack>
+    </nav>
   )
 }

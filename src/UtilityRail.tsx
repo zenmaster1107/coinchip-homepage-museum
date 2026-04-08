@@ -1,3 +1,7 @@
+import { BarChart3, Clock3, Settings, User, Wallet } from 'lucide-react'
+import './design-tokens.css'
+import './primitives.css'
+
 type UtilityItem = {
   id: string
   label: string
@@ -8,14 +12,23 @@ type UtilityRailProps = {
   items: UtilityItem[]
 }
 
+const iconMap = {
+  chart: BarChart3,
+  timer: Clock3,
+  wallet: Wallet,
+  user: User,
+  settings: Settings,
+}
+
 export default function UtilityRail({ items }: UtilityRailProps) {
   return (
-    // Keep the right rail as a repeated floating-control stack.
-    // Labels stay hidden from the visual layout but remain available to assistive tech.
-    <aside className="utility-rail" aria-label="Utility actions">
+    <aside className="cc-utilityRail" aria-label="Utility actions">
       {items.map((item) => (
-        <button className="utility-rail__button" key={item.id} aria-label={item.label}>
-          {item.glyph}
+        <button className="cc-utilityButton" key={item.id} aria-label={item.label} type="button">
+          {(() => {
+            const Icon = iconMap[item.id as keyof typeof iconMap] ?? Settings
+            return <Icon size={15} strokeWidth={2.15} />
+          })()}
         </button>
       ))}
     </aside>

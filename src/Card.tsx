@@ -1,35 +1,61 @@
-type ActivityItem = {
+import type { ReactNode } from 'react'
+import { Trophy } from 'lucide-react'
+import './design-tokens.css'
+import './primitives.css'
+
+export type CardItem = {
   id: string
   label: string
   time: string
   amount: string
-  avatarColor: string
+  leading?: ReactNode
+  trailing?: ReactNode
 }
 
-type CardProps = {
-  items: ActivityItem[]
+export type CardProps = {
+  title?: ReactNode
+  icon?: ReactNode
+  ariaLabel?: string
+  items?: CardItem[]
+  className?: string
+  children?: ReactNode
 }
 
-export default function Card({ items }: CardProps) {
+export function CardRow({ item }: { item: CardItem }) {
   return (
-    <section className="museum-card" aria-label="Recent activity">
-      <h2 className="museum-card__header">🏆 Recent</h2>
-      <div className="museum-card__list">
-        {items.map((item) => (
-          <article className="recent-activity-row" key={item.id}>
-            <div
-              className="recent-activity-row__avatar"
-              aria-hidden="true"
-              style={{ backgroundColor: item.avatarColor }}
-            />
-            <div className="recent-activity-row__content">
-              <strong className="recent-activity-row__label">{item.label}</strong>
-              <span className="recent-activity-row__time">{item.time}</span>
-            </div>
-            <span className="recent-activity-row__amount-pill">{item.amount}</span>
-          </article>
-        ))}
-      </div>
+    <li className="cc-card__row">
+      {item.leading ?? <span className="cc-card__avatar" aria-hidden="true" />}
+      <span className="cc-card__copy">
+        <span className="cc-card__label">{item.label}</span>
+        <span className="cc-card__meta">{item.time}</span>
+      </span>
+      {item.trailing ?? <span className="cc-card__amount">{item.amount}</span>}
+    </li>
+  )
+}
+
+export default function Card({
+  title = 'Recent',
+  icon = <Trophy size={14} strokeWidth={2.25} />,
+  ariaLabel = 'Recent activity',
+  items,
+  className = '',
+  children,
+}: CardProps) {
+  return (
+    <section className={['cc-card', className].filter(Boolean).join(' ')} aria-label={ariaLabel}>
+      <header className="cc-card__header">
+        <span className="cc-card__headerIcon" aria-hidden="true">{icon}</span>
+        <span className="cc-card__title">{title}</span>
+      </header>
+
+      {children ?? (
+        <ul className="cc-card__list" role="list">
+          {(items ?? []).map((item) => (
+            <CardRow key={item.id} item={item} />
+          ))}
+        </ul>
+      )}
     </section>
   )
 }

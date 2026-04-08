@@ -1,26 +1,34 @@
 import AccountPanel from './AccountPanel.tsx'
 import BrandMark from './BrandMark.tsx'
 import Card from './Card.tsx'
-import FooterLinks from './FooterLinks.tsx'
 import Pills from './Pills.tsx'
 import UtilityRail from './UtilityRail.tsx'
 import './design-tokens.css'
+import './primitives.css'
 import { pillItems, recentActivity, utilityItems } from './mockData.ts'
 
-function App() {
+export default function App() {
   return (
-    // Build the homepage museum as a full scene so every visible object can be tuned.
-    <main className="home-scene">
-      <BrandMark />
-      <section className="left-rail">
-        <Card items={recentActivity} />
-        <Pills items={pillItems} />
-        <FooterLinks />
-      </section>
-      <AccountPanel />
-      <UtilityRail items={utilityItems} />
+    <main className="cc-scene">
+      <div className="cc-scene__frame">
+        <section className="cc-leftDock">
+          <BrandMark />
+          <Card items={recentActivity.map(({ avatarColor, ...item }) => item)} />
+          <Pills items={pillItems} activeId="trade" />
+          <div className="cc-dockFooter">
+            <span>Support</span>
+            <span>AML Policy</span>
+            <span>Terms</span>
+          </div>
+        </section>
+
+        <section className="cc-centerStage" aria-hidden="true" />
+
+        <section className="cc-rightDock">
+          <AccountPanel />
+          <UtilityRail items={utilityItems} />
+        </section>
+      </div>
     </main>
   )
 }
-
-export default App
