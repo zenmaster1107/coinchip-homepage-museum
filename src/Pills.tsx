@@ -1,37 +1,23 @@
 import type { ButtonHTMLAttributes, ReactNode } from 'react'
-import {
-  ChevronDown,
-  Globe,
-  Hexagon,
-  Layers,
-  Target,
-  type LucideIcon,
-} from 'lucide-react'
+import type { LucideIcon } from 'lucide-react'
+import { ChromeIcon, resolveChromeIcon, type ChromeIconName } from './chromeIcons.tsx'
 import './design-tokens.css'
 import './primitives.css'
 
-const iconMap = {
-  cards: Layers,
-  trade: Layers,
-  target: Hexagon,
-  pro: Hexagon,
-  globe: Globe,
-  'real-estate': Globe,
-  ring: Target,
-  predictions: Target,
-}
-
-export type PillIconName = keyof typeof iconMap
+export type PillIconName = Extract<
+  ChromeIconName,
+  'trade' | 'portfolio' | 'explore' | 'settings' | 'predictions'
+>
 
 export type PillItem = {
-  id: string
+  id: PillIconName
   label: string
   icon: PillIconName
 }
 
 export type PillsProps = {
   items: PillItem[]
-  activeId?: string
+  activeId?: PillIconName
   className?: string
   onSelect?: (item: PillItem) => void
   ariaLabel?: string
@@ -60,12 +46,12 @@ export function Pill({
   icon,
   active = false,
   className = '',
-  chevron = <ChevronDown size={16} strokeWidth={2.2} />,
+  chevron = <ChromeIcon icon="chevron" size={16} strokeWidth={2.2} />,
   type = 'button',
   onClick,
   'aria-label': ariaLabel,
 }: PillProps) {
-  const Icon = typeof icon === 'string' ? iconMap[icon] : icon
+  const Icon = resolveChromeIcon(icon)
 
   return (
     <button

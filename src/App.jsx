@@ -1,34 +1,24 @@
-import AccountPanel from './AccountPanel.tsx'
-import BrandMark from './BrandMark.tsx'
-import Card from './Card.tsx'
-import Pills from './Pills.tsx'
-import UtilityRail from './UtilityRail.tsx'
+import Chrome from './Chrome.tsx'
 import './design-tokens.css'
 import './primitives.css'
 import { pillItems, recentActivity, utilityItems } from './mockData.ts'
 
 export default function App() {
   return (
-    <main className="cc-scene">
-      <div className="cc-scene__frame">
-        <section className="cc-leftDock">
-          <BrandMark />
-          <Card items={recentActivity.map(({ avatarColor, ...item }) => item)} />
-          <Pills items={pillItems} activeId="trade" />
-          <div className="cc-dockFooter">
-            <span>Support</span>
-            <span>AML Policy</span>
-            <span>Terms</span>
-          </div>
-        </section>
-
-        <section className="cc-centerStage" aria-hidden="true" />
-
-        <section className="cc-rightDock">
-          <AccountPanel />
-          <UtilityRail items={utilityItems} />
-        </section>
-      </div>
-    </main>
+    <Chrome
+      activePage="trade"
+      recentItems={recentActivity}
+      navItems={pillItems}
+      utilityItems={utilityItems}
+    >
+      <section className="cc-pagePanel">
+        <span className="cc-pagePanel__eyebrow">Shared chrome</span>
+        <h1 className="cc-pagePanel__title">Trade</h1>
+        <p className="cc-pagePanel__body">
+          The left dock, account dock, and right dock are now packaged as reusable chrome so the
+          trade, settings, portfolio, and explore pages can all render the same persistent shell.
+        </p>
+      </section>
+    </Chrome>
   )
 }

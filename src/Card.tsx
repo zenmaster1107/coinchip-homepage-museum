@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { Trophy } from 'lucide-react'
+import { ChromeIcon } from './chromeIcons.tsx'
 import './design-tokens.css'
 import './primitives.css'
 
@@ -36,7 +36,7 @@ export function CardRow({ item }: { item: CardItem }) {
 
 export default function Card({
   title = 'Recent',
-  icon = <Trophy size={14} strokeWidth={2.25} />,
+  icon = <ChromeIcon icon="recent" size={14} strokeWidth={2.25} />,
   ariaLabel = 'Recent activity',
   items,
   className = '',
